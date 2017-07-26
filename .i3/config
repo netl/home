@@ -19,10 +19,6 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-#auto enable floating
-#for_window [class="Guake"] floating enable
-for_window [class="output"] floating enable
-
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
 #bindsym $mod+Return exec cool-retro-term 
@@ -31,8 +27,11 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -i
 bindsym $mod+i exec i3-input
+
+#move cursor
+mouse_warping output
 
 # change focus
 bindsym $mod+h focus left
@@ -153,15 +152,16 @@ client.urgent           #2f343a #900000 #ffffff #900000
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-   #status_command i3status --config ~/.i3status.conf
    status_command i3blocks
 }
 
 exec feh --bg-fill ~/wallpapers/wp.jpg
 exec setxkbmap -option grp:switch,grp:alt_shift_toggle us,fi
-exec xflux -l 60 -g 25 
+exec xflux -l 60 -g 25
 exec xinput --set-prop "Primax Kensington Eagle Trackball" "Device Accel Constant Deceleration" 3
 exec xinput --set-prop 'Logitech USB-PS/2 Optical Mouse' 'Device Accel Constant Deceleration' 3
+exec xinput --set-prop "Kensington      Kensington Expert Mouse" 260 2
 exec xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 exec keynav
 exec rm -rf ~/Downloads/*
+exec compton -b
